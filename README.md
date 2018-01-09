@@ -1,1 +1,1 @@
-# Python training for tester
+# Repository for python training
