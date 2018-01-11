@@ -18,30 +18,27 @@ class test_add_contact(unittest.TestCase):
     
     def test_add_contact(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.new_contact_add_page(wd, Contact(firstname="olesya", lastname="leontyeva", nickname="lesya"))
         self.fill_information_about_company(wd, Company(title="qwerty", company="onlc", address="Lenina str, 49", home="Ufa", mobile="89179043417", work="QA",
                                             fax="none", firstemail="email1@mail.ru", secondemail="email2@mail.ru", thirdemail="email3@mail.ru", byear="1992",
                                             address2="Kazan,Lenina str,49", phone2="Kazan", notes= "first test on Python"))
-        self.submit_contact_creation(wd)
         self.logout(wd)
 
     def test_add_contact_empty(self):
         wd = self.wd
-        self.open_home_page(wd)
         self.login(wd, username="admin", password="secret")
         self.new_contact_add_page(wd, Contact(firstname="", lastname="", nickname=""))
         self.fill_information_about_company(wd, Company(title="", company="", address="", home="", mobile="", work="",
                                             fax="", firstemail="", secondemail="", thirdemail="", byear="",
                                             address2="", phone2="", notes=""))
-        self.submit_contact_creation(wd)
         self.logout(wd)
 
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
     def submit_contact_creation(self, wd):
+        self.submit_contact_creation(wd)
         # Submit  contact creation (Enter button)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
 
@@ -110,6 +107,7 @@ class test_add_contact(unittest.TestCase):
         wd.find_element_by_name("nickname").send_keys(contact.nickname)
 
     def login(self, wd, username, password):
+        self.open_home_page(wd)
         # Login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
