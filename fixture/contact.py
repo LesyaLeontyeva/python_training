@@ -7,73 +7,72 @@ class ContactHelper:
         wd = self.app.wd
         # add new contact
         wd.find_element_by_link_text("add new").click()
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact2.firstname)
-        wd.find_element_by_name("lastname").click()
-        wd.find_element_by_name("lastname").clear()
-        wd.find_element_by_name("lastname").send_keys(contact2.lastname)
-        wd.find_element_by_name("nickname").click()
-        wd.find_element_by_name("nickname").clear()
-        wd.find_element_by_name("nickname").send_keys(contact2.nickname)
-        wd.find_element_by_name("title").click()
-        wd.find_element_by_name("title").clear()
-        wd.find_element_by_name("title").send_keys(contact2.title)
-        wd.find_element_by_name("company").click()
-        wd.find_element_by_name("company").clear()
-        wd.find_element_by_name("company").send_keys(contact2.company)
-        wd.find_element_by_name("address").click()
-        wd.find_element_by_name("address").clear()
-        wd.find_element_by_name("address").send_keys(contact2.address)
-        wd.find_element_by_name("home").click()
-        wd.find_element_by_name("home").clear()
-        wd.find_element_by_name("home").send_keys(contact2.home)
-        wd.find_element_by_name("mobile").click()
-        wd.find_element_by_name("mobile").clear()
-        wd.find_element_by_name("mobile").send_keys(contact2.mobile)
-        wd.find_element_by_name("work").click()
-        wd.find_element_by_name("work").clear()
-        wd.find_element_by_name("work").send_keys(contact2.work)
-        wd.find_element_by_name("fax").click()
-        wd.find_element_by_name("fax").clear()
-        wd.find_element_by_name("fax").send_keys(contact2.fax)
-        wd.find_element_by_name("email").click()
-        wd.find_element_by_name("email").clear()
-        wd.find_element_by_name("email").send_keys(contact2.email)
-        wd.find_element_by_name("email2").click()
-        wd.find_element_by_name("email2").clear()
-        wd.find_element_by_name("email2").send_keys(contact2.email2)
-        wd.find_element_by_name("email3").click()
-        wd.find_element_by_name("email3").clear()
-        wd.find_element_by_name("email3").send_keys(contact2.email3)
-        wd.find_element_by_name("homepage").click()
+        self.fill_contact_form(contact2)
+        self.submit_contact()
+
+    def fill_contact_form(self, contact2):
+        wd = self.app.wd
+        self.change_field_value("contact2_firstname", contact2.firstname)
+        self.change_field_value("contact2_lastname", contact2.lastname)
+        self.change_field_value("contact2_nickname", contact2.nickname)
+        self.change_field_value("contact2_title", contact2.title)
+        self.change_field_value("contact2_company", contact2.company)
+        self.change_field_value("contact2_address", contact2.address)
+        self.change_field_value("contact2_home", contact2.home)
+        self.change_field_value("contact2_mobile", contact2.mobile)
+        self.change_field_value("contact2_work", contact2.work)
+        self.change_field_value("contact2_fax", contact2.fax)
+        self.change_field_value("contact2_email", contact2.email)
+        self.change_field_value("contact2_email2", contact2.email2)
+        self.change_field_value("contact2_email3", contact2.email3)
         if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").is_selected():
             wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").click()
         if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").is_selected():
             wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").click()
-        wd.find_element_by_name("byear").click()
-        wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(contact2.byear)
-        wd.find_element_by_name("address2").click()
-        wd.find_element_by_name("address2").clear()
-        wd.find_element_by_name("address2").send_keys(contact2.address2)
-        wd.find_element_by_name("phone2").click()
-        wd.find_element_by_name("phone2").clear()
-        wd.find_element_by_name("phone2").send_keys(contact2.phone2)
-        wd.find_element_by_name("notes").click()
-        wd.find_element_by_name("notes").clear()
-        wd.find_element_by_name("notes").send_keys(contact2.notes)
-        self.submit_contact()
+        self.change_field_value("contact2_byear", contact2.byear)
+        self.change_field_value("contact2_address2", contact2.address2)
+        self.change_field_value("contact2_phone2", contact2.phone2)
+        self.change_field_value("contact2_notes", contact2.notes)
+
+    def change_field_value(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
 
     def delete_first_contact(self):
         wd = self.app.wd
-        #edit first contact
-        wd.find_element_by_name("selected[]").click()
+        self.select_first_contact()
         # submit deletion
         wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
         wd.switch_to_alert().accept()
 
+    def select_first_contact(self):
+        wd = self.app.wd
+        wd.find_element_by_name("selected[]").click()
+
+    def modify_first_contact(self, new_contact_data):
+        wd = self.app.wd
+        self.select_first_contact()
+        # Click on modification icon
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[7]/a/img").click()
+        # Click on modify button
+        wd.find_element_by_name("modifiy").click()
+        # fill new data in form
+        self.fill_contact_form(new_contact_data)
+        # Submit modification. Click on 'update' button
+        wd.find_element_by_xpath("//div[@id='content']/form[1]/input[22]").click()
+        self.return_to_home_page()
+
+    def return_to_home_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home page").click()
 
     def submit_contact(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+
+
+

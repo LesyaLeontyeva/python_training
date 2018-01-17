@@ -4,6 +4,7 @@
       <w>byear</w>
       <w>firstname</w>
       <w>lastname</w>
+      <w>modifiy</w>
     </words>
   </dictionary>
 </component>
