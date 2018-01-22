@@ -25,10 +25,10 @@ class ContactHelper:
         self.change_field_value("contact2_email", contact2.email)
         self.change_field_value("contact2_email2", contact2.email2)
         self.change_field_value("contact2_email3", contact2.email3)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").is_selected():
-            wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").click()
+        # if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").is_selected():
+        #     wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").click()
+        # if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").is_selected():
+        #     wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").click()
         self.change_field_value("contact2_byear", contact2.byear)
         self.change_field_value("contact2_address2", contact2.address2)
         self.change_field_value("contact2_phone2", contact2.phone2)
