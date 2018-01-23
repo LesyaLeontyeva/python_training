@@ -12,27 +12,27 @@ class ContactHelper:
 
     def fill_contact_form(self, contact2):
         wd = self.app.wd
-        self.change_field_value("contact2_firstname", contact2.firstname)
-        self.change_field_value("contact2_lastname", contact2.lastname)
-        self.change_field_value("contact2_nickname", contact2.nickname)
-        self.change_field_value("contact2_title", contact2.title)
-        self.change_field_value("contact2_company", contact2.company)
-        self.change_field_value("contact2_address", contact2.address)
-        self.change_field_value("contact2_home", contact2.home)
-        self.change_field_value("contact2_mobile", contact2.mobile)
-        self.change_field_value("contact2_work", contact2.work)
-        self.change_field_value("contact2_fax", contact2.fax)
-        self.change_field_value("contact2_email", contact2.email)
-        self.change_field_value("contact2_email2", contact2.email2)
-        self.change_field_value("contact2_email3", contact2.email3)
+        self.change_field_value("firstname", contact2.firstname)
+        self.change_field_value("lastname", contact2.lastname)
+        self.change_field_value("nickname", contact2.nickname)
+        self.change_field_value("title", contact2.title)
+        self.change_field_value("company", contact2.company)
+        self.change_field_value("address", contact2.address)
+        self.change_field_value("home", contact2.home)
+        self.change_field_value("mobile", contact2.mobile)
+        self.change_field_value("work", contact2.work)
+        self.change_field_value("fax", contact2.fax)
+        self.change_field_value("email", contact2.email)
+        self.change_field_value("email2", contact2.email2)
+        self.change_field_value("email3", contact2.email3)
         # if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").is_selected():
         #     wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").click()
         # if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").is_selected():
         #     wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").click()
         #self.change_field_value("contact2_byear", contact2.byear)
-        self.change_field_value("contact2_address2", contact2.address2)
-        self.change_field_value("contact2_phone2", contact2.phone2)
-        self.change_field_value("contact2_notes", contact2.notes)
+        self.change_field_value("address2", contact2.address2)
+        self.change_field_value("phone2", contact2.phone2)
+        self.change_field_value("notes", contact2.notes)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
