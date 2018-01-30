@@ -25,11 +25,6 @@ class ContactHelper:
         self.change_field_value("email", contact2.email)
         self.change_field_value("email2", contact2.email2)
         self.change_field_value("email3", contact2.email3)
-        # if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").is_selected():
-        #     wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[16]").click()
-        # if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").is_selected():
-        #     wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[9]").click()
-        # self.change_field_value("contact2_byear", contact2.byear)
         self.change_field_value("address2", contact2.address2)
         self.change_field_value("phone2", contact2.phone2)
         self.change_field_value("notes", contact2.notes)
@@ -72,6 +67,14 @@ class ContactHelper:
     def submit_contact(self):
         wd = self.app.wd
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.return_to_home_page()
+        return len(wd.find_elements_by_name("selected[]"))
+
+
+
 
 
 
