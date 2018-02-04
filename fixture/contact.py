@@ -9,6 +9,7 @@ class ContactHelper:
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact2)
         self.submit_contact()
+        self.return_to_home_page()
 
     def fill_contact_form(self, contact2):
         wd = self.app.wd
@@ -62,7 +63,8 @@ class ContactHelper:
 
     def return_to_home_page(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home page").click()
+        if not (wd.current_url.endswith('/addressbook/')):
+            wd.find_element_by_link_text("home page").click()
 
     def submit_contact(self):
         wd = self.app.wd
