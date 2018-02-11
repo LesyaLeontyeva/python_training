@@ -14,9 +14,12 @@ def test_add_contact(app):
 
 
 def test_add__empty_contact(app):
+        old_contacts = app.contact.get_contact_list()
         app.contact.create(Contact2(firstname="", lastname="", nickname="", title="", company="", address="",
                                     home="", mobile="", work="", fax="", email="", email2="", email3="",
                                     address2="", phone2="", notes=""))
+        new_contacts = app.contact.get_contact_list()
+        assert len(old_contacts) + 1 == len(new_contacts)
 
 
 
