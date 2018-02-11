@@ -23,3 +23,4 @@ class Contact2:
         self.name = name
 
 
+
