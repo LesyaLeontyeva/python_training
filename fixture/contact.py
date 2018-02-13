@@ -8,7 +8,6 @@ class ContactHelper:
 
     def create(self, contact2):
         wd = self.app.wd
-        # add new contact
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact2)
         self.submit_contact()
@@ -75,7 +74,7 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("home").click()
+        # wd.find_element_by_link_text("home").click()
         # self.return_to_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
@@ -83,11 +82,14 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("home").click()
         contacts = []
-        for element in wd.find_elements_by_name("entry"):
-            cells = element.find_element_by_tag_name("td")
-            text = element.text
-            id = cells.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Contact2(name=text, id=id))
+        rows = wd.find_elements_by_name("entry")
+        print(rows)
+        for element in rows:
+            cells = element.find_elements_by_tag_name("td")
+            lastname_text = cells[1].text
+            firstname_text = cells[2].text
+            id = element.find_element_by_name("selected[]").get_attribute("value")
+            contacts.append(Contact2(firstname=firstname_text,lastname=lastname_text, id=id))
         return contacts
 
 
